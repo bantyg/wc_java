@@ -40,7 +40,8 @@ class Wc{
 		Scanner in = new Scanner(System.in);
 		String inputStr = in.nextLine();
 		System.out.println("lines    "+"words    "+"characters");
-		System.out.println(wc.countLines(inputStr)+"         "+wc.countWords(inputStr)+"         "+wc.countChar(inputStr));
+		System.out.println(wc.countLines(inputStr)+"         "+
+			wc.countWords(inputStr)+"         "+wc.countChar(inputStr));
 	}
 }
 
