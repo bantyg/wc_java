@@ -33,4 +33,21 @@ public class WcTest{
 		assertEquals(13,wc.countWords("hello how are you.\r\nI am fine\r\nwhat about you\r\nBawlt\r\nwhat's new"));
 	}
 
+	@Test
+	public void countChar_will_counts_number_of_characters_present_in_the_string(){
+		Wc wc = new Wc();
+		assertEquals(18,wc.countChar("hello how are you."));
+	}
+
+	@Test
+	public void countChar_will_counts_number_of_characters_of_string_which_has_4_lines(){
+		Wc wc = new Wc();
+		assertEquals(46,wc.countChar("hello how are you.\r\nI am fine\r\nwhat about you\r\nBawlt"));
+	}
+
+	@Test
+	public void countChar_will_counts_number_of_characters_of_string_which_has_5_lines(){
+		Wc wc = new Wc();
+		assertEquals(56,wc.countChar("hello how are you.\r\nI am fine\r\nwhat about you\r\nBawlt\r\nwhat's new"));
+	}
 }

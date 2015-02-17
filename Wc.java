@@ -20,4 +20,19 @@ class Wc{
 		}
 		return wordCount;
 	}
+
+	public int countChar(String str){
+		int charCount = 0;
+		String[] splitedByLines = str.split("\r\n");
+		if(splitedByLines.length == 1){
+			charCount = str.length();
+		}
+		else{
+			for (int i = 0;i<splitedByLines.length ;i++ ) {
+				System.out.println("length of string"+(splitedByLines[i]).length());
+				charCount = charCount+(splitedByLines[i]).length();
+			}
+		}
+		return charCount;
+	}
 }
