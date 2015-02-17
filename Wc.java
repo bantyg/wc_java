@@ -6,7 +6,18 @@ class Wc{
 	}
 
 	public int countWords(String str){
-		String[] splited = str.split(" ");
-		return splited.length;
+		int wordCount = 0;
+		String[] splitedByLines = str.split("\r\n");
+		if(splitedByLines.length == 1){
+			String[] words = str.split(" ");
+			wordCount = words.length;
+		}
+		else{
+			for (int i = 0;i<splitedByLines.length ;i++ ) {
+				String[] wordsOfSingleLine = splitedByLines[i].split(" ");
+				wordCount = wordCount+wordsOfSingleLine.length;
+			}
+		}
+		return wordCount;
 	}
 }
