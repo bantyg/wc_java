@@ -39,9 +39,6 @@ class Wc{
 
 	public static void toString(String str,String filename,String option){
 		Wc wc = new Wc();
-		// if(option.equals("-l")){
-		// 	System.out.println("  "+wc.countLines(str)+"   "+filename);
-		// }
 		switch(option){
 			case "-l":System.out.println("  "+wc.countLines(str)+"   "+filename);
 						break;
