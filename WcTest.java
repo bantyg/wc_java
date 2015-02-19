@@ -5,13 +5,13 @@ public class WcTest{
 	@Test
 	public void countLines_will_counts_number_of_lines_of_string_which_has_3_lines(){
 		Wc wc = new Wc();
-		assertEquals(3,wc.countLines("hello how are you.\r\n I am fine \r\n what about you"));
+		assertEquals(2,wc.countLines("hello how are you.\r\n I am fine \r\n what about you"));
 	}
 
 	@Test
 	public void countLines_will_counts_number_of_lines_of_string_which_has_4_lines(){
 		Wc wc = new Wc();
-		assertEquals(4,wc.countLines("hello how are you.\r\n I am fine \r\n what about you \r\n Bawlt"));
+		assertEquals(3,wc.countLines("hello how are you.\r\n I am fine \r\n what about you \r\n Bawlt"));
 	}
 
 
@@ -42,12 +42,12 @@ public class WcTest{
 	@Test
 	public void countChar_will_counts_number_of_characters_of_string_which_has_4_lines(){
 		Wc wc = new Wc();
-		assertEquals(46,wc.countChar("hello how are you.\r\nI am fine\r\nwhat about you\r\nBawlt"));
+		assertEquals(52,wc.countChar("hello how are you.\r\nI am fine\r\nwhat about you\r\nBawlt"));
 	}
 
 	@Test
 	public void countChar_will_counts_number_of_characters_of_string_which_has_5_lines(){
 		Wc wc = new Wc();
-		assertEquals(56,wc.countChar("hello how are you.\r\nI am fine\r\nwhat about you\r\nBawlt\r\nwhat's new"));
+		assertEquals(64,wc.countChar("hello how are you.\r\nI am fine\r\nwhat about you\r\nBawlt\r\nwhat's new"));
 	}
 }
