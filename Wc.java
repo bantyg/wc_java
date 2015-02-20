@@ -1,63 +1,53 @@
 import java.io.*;
-class Wc{
+class Wc {
 
 	public int countLines(String str){
-		String[] splited = str.split("\r\n");
-		return splited.length-1;
+		return str.split("\r\n").length-1;
 	}
 
-	public int countWords(String str){
-		int wordCount = 0;
-		String[] splitedByLines = str.split("\r\n");
-		if(splitedByLines.length == 1)
-			return countWordsForSingleLine(splitedByLines,str,wordCount);
-		else
-			return countWordsForMultipleLine(splitedByLines,str,wordCount);
+	public int countWords(String str) {
+		return str.split("[ \t\n]").length;
 	}
 
-	public static int countWordsForSingleLine(String[] lines,String str,int wordCount){
-			String[] words = str.split(" ");
-			wordCount = words.length;
-			return wordCount;
-	}
-
-	public static int countWordsForMultipleLine(String[] lines,String str,int wordCount){
-		for (int i = 0;i<lines.length ;i++ ) {
-			String[] wordsOfSingleLine = lines[i].split("\\s+");
-			wordCount = wordCount+wordsOfSingleLine.length;
-		}
-		return wordCount;
-	}
-
-	public int countChar(String str){
+	public int countChars(String str){
 		return str.length();
 	}
 
+	public String getLongestLine(String str){
+		String[] splittedByLine = str.split("\r\n");
+    	String longestString = "";
+    	for (String s : splittedByLine){
+      		if (s.length() > longestString.length()){
+        		longestString = s;
+      		}
+    	}
+    	return longestString;
+	}
 
-	public static String toString(String str,String filename,String option){
-		Wc wc = new Wc();
+	public String toString(String str,String filename,String option){
 		switch(option){
-			case "-l":return "  "+wc.countLines(str)+"   "+filename;
-			case "-w":return "  "+wc.countWords(str)+"   "+filename;
-			case "-c":return "  "+wc.countChar(str) + "   "+filename;
-			default:return "      "+wc.countLines(str)+"      "+ wc.countWords(str)+"      "+wc.countChar(str)+"  "+filename;
+			case "-l":return "\t"+countLines(str)+" "+filename;
+			case "-w":return "\t"+countWords(str)+" "+filename;
+			case "-c":return "\t"+countChars(str) + " "+filename;
+			case "-L":return "\t"+getLongestLine(str) + " "+getLongestLine(str).length();
+			default:return "\t"+countLines(str)+"\t"+ countWords(str)+"\t"+countChars(str)+" "+filename;
 		}
 	}
 
-	public static String showTotal(String data,String option){
-		Wc wc = new Wc();
+	public String showTotal(String allContent,String option) {
 		switch(option){
-			case "-l":return "  "+wc.countLines(data)+"   total";
-			case "-w":return "  "+(wc.countWords(data)+1)+"   total";
-			case "-c":return "  "+wc.countChar(data) + "   total";
-			default:return "      "+wc.countLines(data)+"      "+ ((wc.countWords(data)+1)) +"      "+wc.countChar(data)+"  total";
+			case "-l":return "\t"+countLines(allContent)+" total";
+			case "-w":return "\t"+(countWords(allContent)+1)+" total";
+			case "-c":return "\t"+countChars(allContent) + " total";
+			default:return "\t"+countLines(allContent)+"\t"+ ((countWords(allContent)+1)) +"\t"+countChars(allContent)+" total";
 		}
 	}
 
 	public static void main(String[] args) {
-	    String fileData = "",option = args[0],forMultiple="";
+	    String fileData = "",option = args[0],allFilesContent="";
 	    int isfile = 1;
 	    File f = new File(args[0]);
+	    Wc wc = new Wc();
 	    if(f.isFile() == true){
 	    	isfile = 0;
 	    }
@@ -68,15 +58,15 @@ class Wc{
 		      	for(int i=0; i< size; i++){
 			    	fileData = fileData.concat((char)is.read()+"");
 		      	}
-		      	forMultiple =forMultiple.concat(fileData);
-		      	System.out.println(toString(fileData,args[j],args[0]));
+		      	allFilesContent =allFilesContent.concat(fileData);
+		      	System.out.println(wc.toString(fileData,args[j],args[0]));
 		      	fileData = "";
 	      	}
-	      	if(args.length > 1){
-	      		System.out.println(showTotal(forMultiple,args[0]));
+	      	if(isfile == 0 && args.length > 1){
+	      		System.out.println(wc.showTotal(allFilesContent,args[0]));
 	      	}
 		}catch(IOException e){
-      		System.out.print("Exception");
+      		System.out.print("File Not Found!!");
    		}    
 	}
 }
