@@ -24,12 +24,23 @@ class Wc {
     	return longestString;
 	}
 
+	public String getShortestLine(String str){
+		String[] splittedByLine = str.split("\r\n");
+    	String shortestString = splittedByLine[0];
+    	for (String s : splittedByLine){
+      		if (s.length() < shortestString.length()){
+        		shortestString = s;
+      		}
+    	}
+    	return shortestString;
+	}
 	public String toString(String str,String filename,String option){
 		switch(option){
 			case "-l":return "\t"+countLines(str)+" "+filename;
 			case "-w":return "\t"+countWords(str)+" "+filename;
 			case "-c":return "\t"+countChars(str) + " "+filename;
-			case "-L":return "\t"+getLongestLine(str) + " "+getLongestLine(str).length();
+			case "-L":return "\t"+getLongestLine(str).length() + "  "+getLongestLine(str);
+			case "-S":return "\t"+getShortestLine(str).length() + "  "+getShortestLine(str);
 			default:return "\t"+countLines(str)+"\t"+ countWords(str)+"\t"+countChars(str)+" "+filename;
 		}
 	}

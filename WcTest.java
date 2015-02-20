@@ -58,4 +58,12 @@ public class WcTest{
 		String longest = wc.getLongestLine("hello how are you.\r\nI am fine\r\nwhat about you\r\nBawlt\r\nwhat's new");
 		assertTrue(longest.equals("hello how are you."));
 	}
+
+	@Test
+	public void getshortestString_will_give_the_shortest_line_from_number_of_lines(){
+		Wc wc = new Wc();
+		int val1 = 5,val2 = 6;
+		String shortest = wc.getShortestLine("hello how are you.\r\nI am fine\r\nwhat about you\r\nBawlt\r\nwhat's new");
+		assertTrue(shortest.equals("Bawlt"));
+	}
 }
